@@ -1,0 +1,123 @@
+﻿<Controls:MetroWindow x:Class="DrawingApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DrawingApp"
+        xmlns:mdi="clr-namespace:WPF.MDI;assembly=WPF.MDI"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:controls="clr-namespace:DrawingApp.Controls"
+        mc:Ignorable="d"
+        Title="Drawing App" Height="650" Width="750" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+
+    
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="480.667"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0">
+            <Menu>
+                <MenuItem Header="File" Height="30">
+                    <MenuItem Header="New" x:Name="NewWindow" Click="NewWindow_Click"></MenuItem>
+                    <MenuItem Header="Save" Click="SaveWindow_Click"></MenuItem>
+                    <MenuItem Header="Close tab" Click="CloseTab"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Help"></MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <Separator Grid.Row="1"></Separator>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <WrapPanel Width="250">
+                <Button Width="30" Height="30" Margin="5 10" x:Name="pencilButton" Click="OnPencilSelect">
+                    <Image Source="Icons\pencil.png"></Image>
+                </Button>
+                <!--<Button Width="30" Height="30" Margin="5 10" Click="OnBucketSelect">
+                    <Image Source="Icons\bucket.png"></Image>
+                </Button>-->
+                <Button Width="30" Height="30" Margin="5 10" Click="OnEraserSelect">
+                    <Image Source="Icons\eraser.png"></Image>
+                </Button>
+                <Label Margin="30 0 10 0" Height="25">Size:</Label>
+                <ComboBox Height="25" SelectionChanged="onSelectionChange">
+                    <ComboBoxItem  Content="1px" IsSelected="true"></ComboBoxItem>
+                    <ComboBoxItem  Content="2px"></ComboBoxItem>
+                    <ComboBoxItem  Content="3px"></ComboBoxItem>
+                    <ComboBoxItem Content="4px"></ComboBoxItem>
+                </ComboBox>
+                <TextBlock Width="200" Padding="83 17 83 0"><Run Text="Tools"/></TextBlock>
+            </WrapPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Separator  Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+            </StackPanel>
+
+            <WrapPanel Width="150">
+                <Button Width="30" Height="30" Margin="9 10" Click="OnRectangleSelect">
+                    <Image Source="Icons\basic-square.png"></Image>
+                </Button>
+                <Button Width="30" Height="30" Margin="9 10" Click="OnEllipseSelect">
+                    <Image Source="Icons\ellipse-outline-shape-variant.png"></Image>
+                </Button>
+                <Button Width="30" Height="30" Margin="9 10" Click="OnCircleSelect">
+                    <Image Source="Icons\empty.png"></Image>
+                </Button>
+                <TextBlock Width="150" Padding="55 18 50 0">Shapes</TextBlock>
+            </WrapPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+                <Separator  Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+            </StackPanel>
+
+            <WrapPanel Width="100">
+                <Rectangle Stroke="Gray" Width="40" Height="40" x:Name="SelectedColorRectangle" Margin="28 5"></Rectangle>
+                <TextBlock Width="100" Padding="12 18 12 0">Selected color</TextBlock>
+                
+            </WrapPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Separator  Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <WrapPanel Width="150" Margin="5" x:Name="ColorsContainer" >
+                    <Button Width="20" Height="20" Margin="2" Background="Black" Click="ColorClick"></Button>
+                    <Button Width="20" Height="20" Margin="2" Background="Gray" Click="ColorClick"></Button>
+                    <Button Width="20" Height="20" Margin="2" Background="White" Click="ColorClick"></Button>
+                    <Button Width="20" Height="20" Margin="2" Background="Red" Click="ColorClick"></Button>
+                    <Button Width="20" Height="20" Margin="2" Background="Orange" Click="ColorClick"></Button>
+                    <Button Width="20" Height="20" Margin="2" Background="Yellow" Click="ColorClick"></Button>
+                    <Button Width="20" Height="20" Margin="2" Background="Green" Click="ColorClick"></Button>
+                    <Button Width="20" Height="20" Margin="2" Background="LightGreen" Click="ColorClick"></Button>
+                    <Button Width="20" Height="20" Margin="2" Background="Blue" Click="ColorClick"></Button>
+                    <Button Width="20" Height="20" Margin="2" Background="LightBlue" Click="ColorClick"></Button>
+                    <Button Width="20" Height="20" Margin="2" Background="Violet" Click="ColorClick"></Button>
+                    <Button Width="20" Height="20" Margin="2" Background="Pink" Click="ColorClick"></Button>
+
+                </WrapPanel>
+                <TextBlock Width="150" Padding="55 2 55 0">Colors</TextBlock>
+            </StackPanel>
+            
+
+
+        </StackPanel>
+        <Separator Grid.Row="3"></Separator>
+
+        <TabControl x:Name="Canvases" Grid.Row="4">
+            <TabItem Header="Picture">
+                <controls:canvasSurface></controls:canvasSurface>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+    
+</Controls:MetroWindow>
+
